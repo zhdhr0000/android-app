@@ -214,9 +214,6 @@ class DecryptMessage : Injector() {
             data.category.endsWith("_DATA") -> {
                 val decoded = Base64.decode(plainText)
                 val mediaData = GsonHelper.customGson.fromJson(String(decoded), TransferAttachmentData::class.java)
-                if (mediaData.invalidData()) {
-                    return
-                }
                 val mimeType = if (mediaData.mimeType.isNullOrEmpty()) mediaData.mineType else mediaData.mimeType
                 val message = createAttachmentMessage(data.messageId, data.conversationId, data.userId,
                     data.category, mediaData.attachmentId, mediaData.name, null,
@@ -401,6 +398,10 @@ class DecryptMessage : Injector() {
             val decoded = Base64.decode(plainText)
             val mediaData = GsonHelper.customGson.fromJson(String(decoded), TransferAttachmentData::class.java)
             val mimeType = if (mediaData.mimeType.isNullOrEmpty()) mediaData.mineType else mediaData.mimeType
+            if (mediaData.invalidData() &&
+                (data.category == MessageCategory.SIGNAL_IMAGE.name || data.category == MessageCategory.SIGNAL_VIDEO.name)) {
+                return
+            }
             messageDao.updateAttachmentMessage(messageId, mediaData.attachmentId, mimeType, mediaData.size,
                 mediaData.width, mediaData.height, mediaData.thumbnail, mediaData.name,
                 mediaData.key, mediaData.digest, MediaStatus.CANCELED.name, MessageStatus.DELIVERED.name)
