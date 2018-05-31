@@ -56,7 +56,8 @@ data class MessageItem(
     val sharedUserIdentityNumber: String? = null,
     val sharedUserAvatarUrl: String? = null,
     val sharedUserIsVerified: Boolean? = null,
-    val sharedUserAppId: String? = null
+    val sharedUserAppId: String? = null,
+    val mediaWaveform: ByteArray? = null
 ) : Parcelable
 
 fun create(type: String, createdAt: String? = null) = MessageItem("", "", "", "", "",
@@ -64,4 +65,4 @@ fun create(type: String, createdAt: String? = null) = MessageItem("", "", "", ""
     ?: nowInUtc(), MessageStatus.READ.name, null,
     null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null,
-    null, null, null, null, null, null, null, null, null, null)
+    null, null, null, null, null, null, null, null, null, null,null)

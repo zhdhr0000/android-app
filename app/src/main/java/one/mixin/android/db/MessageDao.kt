@@ -17,7 +17,7 @@ interface MessageDao : BaseDao<Message> {
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT m.id as messageId, m.conversation_id as conversationId, u.user_id as userId, " +
         "u.full_name as userFullName, u.identity_number as userIdentityNumber, u.app_id as appId, m.category as type, " +
-        "m.content as content, m.created_at as createdAt, m.status as status, m.media_status as mediaStatus, " +
+        "m.content as content, m.created_at as createdAt, m.status as status, m.media_status as mediaStatus, m.media_waveform as mediaWaveform, " +
         "m.name as mediaName, m.media_mime_type as mediaMimeType, m.media_size as mediaSize, m.media_width as mediaWidth, m.media_height as mediaHeight, " +
         "m.thumb_image as thumbImage, m.media_url as mediaUrl, m.media_duration as mediaDuration, " +
         "u1.full_name as participantFullName, m.action as actionName, u1.user_id as participantUserId, " +
