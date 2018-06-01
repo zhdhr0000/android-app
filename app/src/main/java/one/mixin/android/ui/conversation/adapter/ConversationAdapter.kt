@@ -444,7 +444,6 @@ class ConversationAdapter(
 
         open fun onTransferClick(userId: String) {}
 
-        open fun onAudioClick(messageItem: MessageItem) {}
     }
 
     fun addSelect(messageItem: MessageItem): Boolean {
